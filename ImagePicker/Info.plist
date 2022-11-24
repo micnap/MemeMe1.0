@@ -55,6 +55,12 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSCameraUsageDescription</key>
+	<string>Allow camera to take picture when creating memes</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Use photos from photo library for creating memes</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Save Memes to photo library</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

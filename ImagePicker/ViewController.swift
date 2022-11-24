@@ -43,6 +43,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         setupTextfield(textfield: bottomTextfield)
         
         shareButton.isEnabled = false
+        
+        #if targetEnvironment(simulator)
+            navbarCamera.isEnabled = false
+        #else
+            navbarCamera.isEnabled = true
+        #endif
     }
     
     // Utility function for styling textfields.

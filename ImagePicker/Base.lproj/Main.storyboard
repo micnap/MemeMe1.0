@@ -24,76 +24,65 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mlB-NN-bhv">
-                                <rect key="frame" x="0.0" y="852" width="414" height="44"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                                 <items>
                                     <barButtonItem title="Pick" id="GIx-Ga-01h">
                                         <connections>
                                             <action selector="pickAnImageFromLibrary:" destination="BYZ-38-t0r" id="64c-ye-aCm"/>
                                         </connections>
                                     </barButtonItem>
-                                    <barButtonItem style="plain" id="x1e-ew-kA7">
-                                        <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="usD-wU-SdU">
-                                            <rect key="frame" x="63.5" y="7" width="54" height="30"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <state key="normal" title="Camera"/>
-                                            <connections>
-                                                <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" eventType="touchUpInside" id="cEh-tV-cvj"/>
-                                            </connections>
-                                        </button>
+                                    <barButtonItem title="Camera" id="mzg-Jf-lqT">
+                                        <connections>
+                                            <action selector="pickAnImageFromCamera:" destination="BYZ-38-t0r" id="Lnv-nS-1Vh"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem systemItem="action" id="zIu-Ht-oeq">
+                                        <connections>
+                                            <action selector="shareMeme:" destination="BYZ-38-t0r" id="si7-Lm-R29"/>
+                                        </connections>
                                     </barButtonItem>
                                 </items>
                             </toolbar>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="A53-uh-4Fx">
-                                <rect key="frame" x="57" y="54" width="300" height="34"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="TOP" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="A53-uh-4Fx">
+                                <rect key="frame" x="57" y="108" width="300" height="18.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="4aU-wy-0B7"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" borderStyle="roundedRect" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wn7-lp-Lry">
-                                <rect key="frame" x="57" y="808" width="300" height="34"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="BOTTOM" textAlignment="center" adjustsFontForContentSizeCategory="YES" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="Wn7-lp-Lry">
+                                <rect key="frame" x="57" y="813.5" width="300" height="18.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="300" id="y9r-tE-VHl"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters"/>
                             </textField>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Px2-4z-kCh">
-                                <rect key="frame" x="364" y="54" width="40" height="30"/>
-                                <state key="normal" title="Share"/>
-                                <connections>
-                                    <action selector="shareMeme:" destination="BYZ-38-t0r" eventType="touchUpInside" id="m3X-G7-cQF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstItem="jEb-BS-I0s" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="6hv-EB-sDn"/>
                             <constraint firstItem="Wn7-lp-Lry" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="8JB-To-z13"/>
+                            <constraint firstItem="mlB-NN-bhv" firstAttribute="leading" secondItem="jEb-BS-I0s" secondAttribute="leading" id="8t6-bF-uMu"/>
                             <constraint firstItem="jEb-BS-I0s" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="AKs-iw-StS"/>
-                            <constraint firstAttribute="bottom" secondItem="mlB-NN-bhv" secondAttribute="bottom" id="FkV-ea-dyx"/>
-                            <constraint firstItem="mlB-NN-bhv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="RdN-BJ-UAz"/>
+                            <constraint firstItem="mlB-NN-bhv" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GMl-Hh-m93"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="Wn7-lp-Lry" secondAttribute="bottom" constant="30" id="GNb-2N-PhM"/>
+                            <constraint firstItem="A53-uh-4Fx" firstAttribute="top" secondItem="mlB-NN-bhv" secondAttribute="bottom" constant="20" id="Qog-Oz-Mmp"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="jEb-BS-I0s" secondAttribute="trailing" id="UId-xn-g8N"/>
-                            <constraint firstItem="A53-uh-4Fx" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="ael-C1-1Zr"/>
                             <constraint firstItem="A53-uh-4Fx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="bDh-FW-4D0"/>
-                            <constraint firstItem="Px2-4z-kCh" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="10" id="dGO-y4-1sB"/>
                             <constraint firstItem="jEb-BS-I0s" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dLn-6e-goe"/>
-                            <constraint firstItem="mlB-NN-bhv" firstAttribute="trailing" secondItem="6Tk-OE-BBY" secondAttribute="trailing" id="gjS-Ol-fxL"/>
                             <constraint firstItem="jEb-BS-I0s" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="iy1-YT-NrI"/>
-                            <constraint firstItem="mlB-NN-bhv" firstAttribute="top" secondItem="Wn7-lp-Lry" secondAttribute="bottom" constant="10" id="jzR-6B-Ln8"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Px2-4z-kCh" secondAttribute="trailing" constant="10" id="u1W-Ob-YJF"/>
-                            <constraint firstItem="mlB-NN-bhv" firstAttribute="top" secondItem="jEb-BS-I0s" secondAttribute="bottom" id="zby-VF-snU"/>
+                            <constraint firstItem="mlB-NN-bhv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="lD1-35-Ngx"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="bottomTextfield" destination="Wn7-lp-Lry" id="Bsc-eh-Zm4"/>
-                        <outlet property="cameraButton" destination="x1e-ew-kA7" id="eLI-bj-LXN"/>
                         <outlet property="imagePickerView" destination="jEb-BS-I0s" id="Cwj-T5-wlT"/>
                         <outlet property="imageView" destination="jEb-BS-I0s" id="fxL-8g-OLC"/>
-                        <outlet property="shareButton" destination="Px2-4z-kCh" id="j1Y-pZ-g4d"/>
+                        <outlet property="navbarCamera" destination="mzg-Jf-lqT" id="S2J-Fz-3vN"/>
+                        <outlet property="shareButton" destination="zIu-Ht-oeq" id="jsv-bq-uMK"/>
                         <outlet property="toolbar" destination="mlB-NN-bhv" id="eCH-Dd-qTZ"/>
                         <outlet property="topTextfield" destination="A53-uh-4Fx" id="5ZO-va-M5w"/>
                     </connections>

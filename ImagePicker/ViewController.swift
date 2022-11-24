@@ -18,39 +18,41 @@ struct Meme {
 class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, UITextFieldDelegate {
 
     @IBOutlet weak var imagePickerView: UIImageView!
-    @IBOutlet weak var cameraButton: UIBarButtonItem!
     @IBOutlet weak var topTextfield: UITextField!
     @IBOutlet weak var bottomTextfield: UITextField!
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var shareButton: UIButton!
     @IBOutlet weak var toolbar: UIToolbar!
+    @IBOutlet weak var navbarCamera: UIBarButtonItem!
+    @IBOutlet weak var shareButton: UIBarButtonItem!
     
     // Textfield attributes.
     let memeTextAttributes: [NSAttributedString.Key: Any] = [
         NSAttributedString.Key.strokeColor: UIColor.black,
         NSAttributedString.Key.foregroundColor: UIColor.white,
         NSAttributedString.Key.font: UIFont(name: "HelveticaNeue-CondensedBlack", size: 40)!,
-        NSAttributedString.Key.strokeWidth:  2.0,
+        NSAttributedString.Key.strokeWidth:  -2.0,
     ]
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         // Only enable camera button in toolbar if camera is available on device.
-        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        navbarCamera.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
+        
+        setupTextfield(textfield: topTextfield)
+        setupTextfield(textfield: bottomTextfield)
+        
+        shareButton.isEnabled = false
+    }
     
+    // Utility function for styling textfields.
+    func setupTextfield(textfield: UITextField) {
         // Enable use of textfield delegate methods.
-        self.topTextfield.delegate = self
-        self.bottomTextfield.delegate = self
+        textfield.delegate = self
         
         // Style text in textfields.
-        self.topTextfield.defaultTextAttributes = memeTextAttributes
-        self.bottomTextfield.defaultTextAttributes = memeTextAttributes
-        
-        self.topTextfield.textAlignment = .center
-        self.bottomTextfield.textAlignment = .center
-        
-        self.shareButton.isEnabled = false
+        textfield.defaultTextAttributes = memeTextAttributes
+        textfield.textAlignment = .center
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -85,18 +87,20 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Take an image with the camera for the meme.
     @IBAction func pickAnImageFromCamera(_ sender: Any) {
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .camera
-        present(imagePicker, animated: true, completion: nil)
+        pickImage(source: .camera)
     }
     
     // Pick an image from the device photo library for the meme.
     @IBAction func pickAnImageFromLibrary(_ sender: Any) {
-        let pickerController = UIImagePickerController()
-        pickerController.delegate = self
-        pickerController.sourceType = .photoLibrary
-        present(pickerController, animated: true, completion: nil)
+        pickImage(source: .photoLibrary)
+    }
+    
+    // Utility function for choosing an image.
+    func pickImage(source: UIImagePickerController.SourceType) {
+        let imagePicker = UIImagePickerController()
+        imagePicker.delegate = self
+        imagePicker.sourceType = source
+        present(imagePicker, animated: true, completion: nil)
     }
     
     // Callback for when the image has been chosen or modal has been cancelled.
@@ -109,7 +113,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         dismiss(animated: true, completion: nil)
         if let image = info[.originalImage] as? UIImage {
             imagePickerView.image = image
-            self.shareButton.isEnabled = true
+            shareButton.isEnabled = true
         }
     }
     
@@ -140,7 +144,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     // Set bottom of view to make room for keyboard.
     @objc func keyboardWillShow(_ notification: Notification) {
-        view.frame.origin.y -= getKeyboardHeight(notification)
+        if bottomTextfield.isFirstResponder {
+            view.frame.origin.y -= getKeyboardHeight(notification)
+        }
     }
     
     // Return bottom of view to bottom of screen when keyboard is hidden.
@@ -158,25 +164,23 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     // Save the meme.
     func saveMeme() {
         // Create the meme
-        Meme(topText: self.topTextfield.text!, bottomText: self.bottomTextfield.text!, originalImage: self.imageView.image!, memedImage: generateMemedImage())
+        Meme(topText: topTextfield.text!, bottomText: bottomTextfield.text!, originalImage: imageView.image!, memedImage: generateMemedImage())
     }
     
     // Generate the meme to be saved.
     func generateMemedImage() -> UIImage {
         
         // Hide items that shouldn't be in the saved image.
-        self.toolbar.isHidden = true
-        self.shareButton.isHidden = true
+        toolbar.isHidden = true
         
         // Render view to an image
-        UIGraphicsBeginImageContext(self.view.frame.size)
-        view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        UIGraphicsBeginImageContext(view.frame.size)
+        view.drawHierarchy(in: view.frame, afterScreenUpdates: true)
         let memedImage:UIImage = UIGraphicsGetImageFromCurrentImageContext()!
         UIGraphicsEndImageContext()
         
         // Restore hidden items to view.
-        self.toolbar.isHidden = false
-        self.shareButton.isHidden = false
+        toolbar.isHidden = false
 
         return memedImage
     }
